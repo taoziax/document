@@ -1,35 +1,45 @@
-
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Cluster
+#设置集群名称
 metadata:
   name: sample
 spec:
+  #设置集群节点
   hosts:
   - {name: master, address: 192.168.177.200, internalAddress: 192.168.177.200, user: root, password: "123456"}
   - {name: node1, address: 192.168.177.201, internalAddress: 192.168.177.201, user: root, password: "123456"}
   - {name: node2, address: 192.168.177.202, internalAddress: 192.168.177.202, user: root, password: "123456"}
   roleGroups:
+    #etcd存储 Kubernetes 配置和状态节点
     etcd:
     - master
+    #控制节点
     control-plane: 
     - master
+    #工作节点
     worker:
     - node1
     - node2
   controlPlaneEndpoint:
     ## Internal loadbalancer for apiservers 
     # internalLoadbalancer: haproxy
-
+    
+    # Kubernetes API Server 的 集群访问域名
     domain: lb.kubesphere.local
     address: ""
     port: 6443
   kubernetes:
     version: v1.21
+    #Kubernetes 集群域名
     clusterName: cluster.local
+    #自动续签证书
     autoRenewCerts: true
+    #容器
     containerManager: docker
   etcd:
     type: kubekey
+    
+  #设置CNI网络插件
   network:
     plugin: calico
     kubePodsCIDR: 10.233.64.0/18
@@ -38,10 +48,27 @@ spec:
     multusCNI:
       enabled: false
   registry:
+  
+    #私有 Docker 仓库配置
     privateRegistry: ""
     namespaceOverride: ""
+    #privateRegistry: "harbor.example.com"
+    #namespaceOverride: "kubesphere"
+    
+    #Docker 镜像配置
     registryMirrors: []
+    #registryMirrors:
+    #  - "https://mirror.ccs.tencentyun.com"
+    #  - "https://docker.mirrors.ustc.edu.cn"
+    
+    #http仓库
     insecureRegistries: []
+    #insecureRegistries:
+    #  - "http://harbor.example.com"
+    
+  #扩展插件
   addons: []
-
-
+  #可设置同时安装kubesphere
+  #addons:
+  #- name: kubesphere
+  #  version: v3.3.0
