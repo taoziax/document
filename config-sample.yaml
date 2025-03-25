@@ -1,10 +1,10 @@
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Cluster
-#集群名称
+#设置集群名称
 metadata:
   name: sample
 spec:
-  #集群节点
+  #设置集群节点
   hosts:
   - {name: master, address: 192.168.177.200, internalAddress: 192.168.177.200, user: root, password: "123456"}
   - {name: node1, address: 192.168.177.201, internalAddress: 192.168.177.201, user: root, password: "123456"}
@@ -24,7 +24,7 @@ spec:
     ## Internal loadbalancer for apiservers 
     # internalLoadbalancer: haproxy
     
-    # Kubernetes API Server 集群访问域名
+    # Kubernetes API Server 的 集群访问域名
     domain: lb.kubesphere.local
     address: ""
     port: 6443
@@ -58,8 +58,16 @@ spec:
     #Docker 镜像配置
     registryMirrors: []
     #registryMirrors:
-    #  - "https://mirror.ccs.tencentyun.com"
-    #  - "https://docker.mirrors.ustc.edu.cn"
+      #- "https://b9pmyelo.mirror.aliyuncs.com"
+      #- "https://docker.m.daocloud.io"
+      #- "https://docker.imgdb.de"
+      #- "https://docker-0.unsee.tech"
+      #- "https://docker.hlmirror.com"
+      #- "https://registry.docker-cn.com"
+      #- "https://docker.mirrors.ustc.edu.cn"
+      #- "https://hub-mirror.c.163.com"
+      #- "https://mirror.baidubce.com"
+      #- "https://ccr.ccs.tencentyun.com"
     
     #http仓库
     insecureRegistries: []
