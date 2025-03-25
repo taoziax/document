@@ -1,10 +1,10 @@
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Cluster
-#设置集群名称
+#集群名称
 metadata:
   name: sample
 spec:
-  #设置集群节点
+  #集群节点
   hosts:
   - {name: master, address: 192.168.177.200, internalAddress: 192.168.177.200, user: root, password: "123456"}
   - {name: node1, address: 192.168.177.201, internalAddress: 192.168.177.201, user: root, password: "123456"}
@@ -24,7 +24,7 @@ spec:
     ## Internal loadbalancer for apiservers 
     # internalLoadbalancer: haproxy
     
-    # Kubernetes API Server 的 集群访问域名
+    # Kubernetes API Server 集群访问域名
     domain: lb.kubesphere.local
     address: ""
     port: 6443
